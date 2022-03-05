@@ -47,15 +47,16 @@
 	        <h1>Adição de produtos concluída</h1>
             <?php
                 include "../conexao/conexao.php";
-                $nome = $_POST['nome'];
-                $precoproduto = $_POST[precoproduto];
-                $descricaoproduto = $_POST['descricaoproduto'];
-                $qtdeestoque = $_POST[qtdeestoque];
                 
-                $sql="INSERT INTO produto VALUES (DEFAULT, '$nome',$precoproduto,'$descricaoproduto',$qtdeestoque)";
-                $resultado= pg_query($conecta, $sql);
-                $qtde=pg_affected_rows($resultado);
-                $erro=pg_last_error();
+                //$sql="INSERT INTO produto VALUES (DEFAULT, '$nome',$precoproduto,'$descricaoproduto',$qtdeestoque)";
+                $statement = $conecta -> prepare ("INSERT INTO produto VALUES (DEFAULT, ':nome',:precoproduto,':descricaoproduto',:qtdeestoque))";
+
+                $linhas=$conecta -> query ($statement);
+
+
+                //$resultado= pg_query($conecta, $sql);
+                //$qtde=pg_affected_rows($resultado);
+        
 
                 if ($qtde > 0) {
                     echo "<strong>Os registros foram atualizados com sucesso!</strong><br><br><br>";
