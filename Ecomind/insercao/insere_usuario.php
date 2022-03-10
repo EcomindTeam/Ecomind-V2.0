@@ -52,7 +52,8 @@
                 $nome = $_POST['nome'];
                 $cpf = $_POST['cpf'];
 		        $endereco = $_POST['endereco'];
-                $sql="INSERT INTO usuario VALUES (DEFAULT,'$senha','$nome','$email','$cpf','$endereco')";
+                // Mudar aqui
+                //$sql="INSERT INTO usuario VALUES (DEFAULT,'$senha','$nome','$email','$cpf','$endereco')";
                 $resultado= pg_query($conecta, $sql);
                 $qtde=pg_affected_rows($resultado);
                 $erro=pg_last_error();
