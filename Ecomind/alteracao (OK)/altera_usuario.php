@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
 <meta charset="utf-8" />
-<title>Lista de Produtos Cadastrados para Alteração</title>
+<title>Lista de Usuários Cadastrados para Alteração</title>
 <link rel="stylesheet" href="/samaral/3bimtrab/css/style.css">
 </head>
     <body>
@@ -29,53 +29,51 @@
                 ?> 
                 <a class="zero" href="/samaral/3bimtrab/home.php"> Home </a> &nbsp;&nbsp;
                 <a class="zero" href="/samaral/3bimtrab/carrinho/produtos.php"> Produtos </a> &nbsp;&nbsp;
-                <a class="zero" href="/samaral/3bimtrab/design.html"> Design </a> &nbsp;&nbsp;
+                <a class="zero" href="/samaral/3bimtrab/design.php"> Design </a> &nbsp;&nbsp;
                 <a class="zero" href="/samaral/3bimtrab/insercao/cadastro.php"> Cadastro </a> &nbsp;&nbsp;
                 <a class="zero" href="/samaral/3bimtrab/estatisticas.php"> Estatísticas </a> &nbsp;&nbsp;
-                <a href="/samaral/3bimtrab/Carrinho/carrinho.php"> <img src="/samaral/3bimtrab/imagens/carrinho.png" width="3.5%"></a> &nbsp;&nbsp;
+                <a href="/samaral/3bimtrab/carrinho/carrinho.php"> <img src="/samaral/3bimtrab/imagens/carrinho.png" width="3.5%"></a> &nbsp;&nbsp;
                 <a href="/samaral/3bimtrab/configuracoes.php"> <img src="/samaral/3bimtrab/imagens/engrenagem.png" width="3.5%"></a> &nbsp;&nbsp;
                 <br>
             </div>
             <a name="topo"></a> &nbsp;&nbsp;
-            <h1>Altera Produto</h1>
+            <h1>Altera Usuário</h1>
         </div>
         <br><br>
             <div class="altera">
                 
-                    <?php
+                <?php
                     include "../conexao/conexao.php";
-                    $sql="SELECT * FROM produto WHERE excluido is false ORDER BY idproduto;";
-                    $resultado= pg_query($conecta, $sql);
-                    $qtde=pg_num_rows($resultado);
-                    if ($qtde > 0)
+                    $sql="SELECT * FROM usuario WHERE excluido is false ORDER BY idusuario;";
+                    $statement = $stringdeconexao->query($sql);
+                    $statement->execute();
+
+                    if ($statement->fetchAll() <= 0)
                     {
-                        echo "<br><br><strong>Produtos Encontrados</strong><br><br><br>";
-                        for ($cont=0; $cont < $qtde; $cont++)
+                        echo "Não foi encontrado nenhum usuario !!!<br><br>";
+                        pg_close($conecta);
+                        //echo "A conexão com o banco de dados foi encerrada!"
+                    }
+                    else{
+                        echo "<br><br><strong>Usuários Encontrados</strong><br><br><br>";
+                        foreach ($statement as $linha)
                         {
                             $linha=pg_fetch_array($resultado);
-                            echo "Código do produto.................: ".$linha['idproduto']."<br>";
-                            echo "Nome......................................: ".$linha['nome']."<br>";
-                            echo "Preço......................................: ".$linha['precoproduto']."<br>";
-			    echo "Quantidade em estoque.......: ".$linha['qtdeestoque']."<br>";
-                            echo "Descrição...............................: ".$linha['descricaoproduto']."<br>";
+                            echo "ID do Usuário........: ".$linha['idusuario']."<br>";
+                            echo "Nome.....................: ".$linha['nome']."<br>";  
+                            echo "Senha....................: ".$linha['senha']."<br>";
+                            echo "Endereço..............: ".$linha['endereco']."<br>";
+                            echo "CPF.......................: ".$linha['cpf']."<br>";
 
-                            echo "<a href='form_altera_produto.php?idproduto=".$linha[idproduto]."'> Alterar</a><br><br>"; 
+                            echo "<a href='form_altera_usuario.php?idusuario=".$linha[idusuario]."'> Alterar</a><br><br>"; 
                         } 
                     }
-                    else
-                    echo "Não foi encontrado nenhum produto !!!<br><br>";
-                    pg_close($conecta);
-                    //echo "A conexão com o banco de dados foi encerrada!"
-                    ?>
-		<br><br>
+                    
+                ?>
                 
-		
             </div><br><br><br>
-         
-	<center>
-		
 	    <div id="rodape">
-                
+                <center>
                     <br>
                     <a class="um" href="home.php"> Home </a> &nbsp;&nbsp;
                     <a class="um" href="/samaral/3bimtrab/carrinho/produtos.php"> Produtos </a> &nbsp;&nbsp;
@@ -87,9 +85,9 @@
                     <br>
                     <p>09 - Guilherme Silva &nbsp;&nbsp;  11 - Ian Moura &nbsp;&nbsp;   14 - João Pedro &nbsp;&nbsp;  28 - Renan Pereira &nbsp;&nbsp;   30 - Sara Brandão</p>
                     <br>
-                
+                </center>
             </div>
-	 </center>
+
         </div>
         </center>
     </body>

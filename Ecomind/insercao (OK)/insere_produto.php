@@ -68,20 +68,6 @@
                 }	
                 pg_close($conecta);
                 echo "A conexão com o banco de dados foi encerrada! <br>";                
-               /* Antigo
-                if ($qtde > 0) {
-                    echo "<strong>Os registros foram atualizados com sucesso!</strong><br><br><br>";
-                echo '<a class="ali" href="http://200.145.153.175/samaral/3bimtrab/home.php"> Voltar para página inicial</a> ';
-
-                }
-                else
-                {
-                    echo "Gravação mal-sucedida";
-                echo '<a class="ali" href="http://200.145.153.175/samaral/3bimtrab/home.php"> Voltar para página inicial</a> ';
-                }
-
-                pg_close($conecta);
-                */
             ?>
            </div>
         </div>
