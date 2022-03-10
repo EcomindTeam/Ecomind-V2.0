@@ -46,18 +46,29 @@
             <div id = "cadastro">
 	        <h1>Adição de produtos concluída</h1>
             <?php
-                include "../conexao/conexao.php";
-                
-                //$sql="INSERT INTO produto VALUES (DEFAULT, '$nome',$precoproduto,'$descricaoproduto',$qtdeestoque)";
-                $statement = $conecta -> prepare ("INSERT INTO produto VALUES (DEFAULT, ':nome',:precoproduto,':descricaoproduto',:qtdeestoque))";
+                include "../conexao/conexao.php";        
+                $string = "INSERT INTO produto VALUES (DEFAULT, ':nome',':precoproduto',':descricaoproduto', ':qtdestoque'";
 
-                $linhas=$conecta -> query ($statement);
+                $sql=$conecta->prepare($string);
+                $sql->bindParam(":precoproduto",$nome);
+                $sql->bindParam(":precoproduto",$precoproduto);
+                $sql->bindParam(":descricaoproduto",$descricaoproduto);
+                $sql->bindParam(":qtdestoque",$qtdestoque);
+                $statement = $stringdeconexao->query($sql);
+                $statement->execute();  
 
-
-                //$resultado= pg_query($conecta, $sql);
-                //$qtde=pg_affected_rows($resultado);
-        
-
+                if ( $statement->fetchAll() <= 0 )
+                {
+                    echo "<strong>Os registros foram atualizados com sucesso!</strong><br><br><br>";
+                    echo '<a class="ali" href="http://200.145.153.175/samaral/3bimtrab/home.php"> Voltar para página inicial</a> ';
+                }
+                else{
+                    echo "Gravação mal-sucedida";
+                    echo '<a class="ali" href="http://200.145.153.175/samaral/3bimtrab/home.php"> Voltar para página inicial</a> ';
+                }	
+                pg_close($conecta);
+                echo "A conexão com o banco de dados foi encerrada! <br>";                
+               /* Antigo
                 if ($qtde > 0) {
                     echo "<strong>Os registros foram atualizados com sucesso!</strong><br><br><br>";
                 echo '<a class="ali" href="http://200.145.153.175/samaral/3bimtrab/home.php"> Voltar para página inicial</a> ';
@@ -70,8 +81,7 @@
                 }
 
                 pg_close($conecta);
-
-
+                */
             ?>
            </div>
         </div>

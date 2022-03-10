@@ -52,24 +52,34 @@
                 $nome = $_POST['nome'];
                 $cpf = $_POST['cpf'];
 		        $endereco = $_POST['endereco'];
-                // Mudar aqui
-                //$sql="INSERT INTO usuario VALUES (DEFAULT,'$senha','$nome','$email','$cpf','$endereco')";
+            
+
+                $string = "INSERT INTO produto VALUES (':email', ':senha',':nome',':cpf', ':endereco'";
+                $sql=$conecta->prepare($string);
+
+                $sql->bindParam(":email",$email);
+                $sql->bindParam(":senha",$senha);
+                $sql->bindParam(":nome",$nome);
+                $sql->bindParam(":cpf",$cpf);
+                $sql->bindParam(":endereco",$endereco);
+                $statement = $stringdeconexao->query($sql);
+                $statement->execute();
+
                 $resultado= pg_query($conecta, $sql);
                 $qtde=pg_affected_rows($resultado);
                 $erro=pg_last_error();
 
-                if ($qtde > 0) {
-                    echo "<strong>Os registros foram atualizados com sucesso!</strong><br><br><br>";
-                echo '<a class="ali" href="http://200.145.153.175/samaral/3bimtrab/home.php"> Voltar para página inicial</a> ';
-
-                }
-                else
+                if ( $statement->fetchAll() <= 0 )
                 {
-                    echo "Gravação mal-sucedida";
-                echo '<a class="ali" href="http://200.145.153.175/samaral/3bimtrab/home.php"> Voltar para página inicial</a> ';
+                    echo "<strong>Os registros foram atualizados com sucesso!</strong><br><br><br>";
+                    echo '<a class="ali" href="http://200.145.153.175/samaral/3bimtrab/home.php"> Voltar para página inicial</a> ';
                 }
-
+                else{
+                    echo "Gravação mal-sucedida";
+                    echo '<a class="ali" href="http://200.145.153.175/samaral/3bimtrab/home.php"> Voltar para página inicial</a> ';
+                }	
                 pg_close($conecta);
+                echo "A conexão com o banco de dados foi encerrada! <br>";  
             ?>
            </div>
         </div><br><br><br><br><br><br><br><br><br><br><br><br>
