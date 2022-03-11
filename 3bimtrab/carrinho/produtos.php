@@ -62,7 +62,7 @@
         $res = pg_query($conecta, $sql);
         $qtdeestoque= pg_num_rows($res);
         if($qtdeestoque>0)
-            while($linha = pg_fetch_array($res)){
+            while($linha = $statement->fetchALL($res)){
 		echo "<div id='interna2'>";
                 echo "<div id='interna1'>";
 		echo " <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".$linha['nome']."</h2> <br />";

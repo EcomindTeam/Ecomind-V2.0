@@ -99,7 +99,7 @@ Adicionado por Prof. Vitor Simeão (out/2019)
 								{ // Início do FOREACH
 									$sql = "SELECT * FROM produto WHERE idproduto=$idproduto AND	excluido IS FALSE ORDER BY nome";
 									$res = pg_query($conecta, $sql);
-									$linha = pg_fetch_array($res);
+									$linha = $statement->fetchALL($res);
 									$preco = $linha['precoproduto'];
 			
 									//$sql = "SELECT MAX(idvenda) FROM venda WHERE excluido IS FALSE";
@@ -122,7 +122,7 @@ Adicionado por Prof. Vitor Simeão (out/2019)
 							{
 								$sql = "SELECT * FROM produto WHERE idproduto=$idproduto AND	excluido!= true ORDER BY idproduto";
 								$res = pg_query($conecta, $sql);
-								$linha = pg_fetch_array($res);
+								$linha = $statement->fetchALL($res);
 								$valor=$linha['precoproduto']*$qtd;
 								echo '<tr><th width="100">'.$linha['idproduto'].'</th>';
 								echo '<th width="244">'.$linha['nome'].'</th>';

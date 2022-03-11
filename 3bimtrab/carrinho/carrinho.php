@@ -47,7 +47,7 @@
                      echo "Produto não encontrado  !!!<br><br>";
                      exit;
                   }
-                  $linha = pg_fetch_array($resultado);
+                  $linha = $statement->fetchALL($resultado);
                   if(!empty($qtd) && $qtd > 0 && $qtd <= $linha['qtdeestoque']){
                      $_SESSION['carrinho'][$idproduto] = $qtd;
                   }else{
@@ -144,7 +144,7 @@
 						$regs = pg_num_rows($res);
 						if($regs>0)
 						{
-							$linha = pg_fetch_array($res);
+							$linha = $statement->fetchALL($res);
 							$nome = $linha['nome'];
 							$precoproduto= $linha['precoproduto'];
 							$sub = $precoproduto * $qtd;
