@@ -49,7 +49,6 @@
                     $statement->execute();
                     if($statement->fetchAll() <= 0){
                         echo "Não foi encontrado nenhum produto !!!<br><br>";
-                        pg_close($conecta);
                         //echo "A conexão com o banco de dados foi encerrada!"
                     }
                     else
@@ -57,14 +56,14 @@
                         echo "<br><br><strong>Produtos Encontrados</strong><br><br><br>";
                         foreach ($statement as $linha)
                         {
-                            $linha=pg_fetch_array($resultado);
+                            $linha=$statement->fetchALL($resultado);
                             echo "Código do produto.................: ".$linha['idproduto']."<br>";
                             echo "Nome......................................: ".$linha['nome']."<br>";
                             echo "Preço......................................: ".$linha['precoproduto']."<br>";
 			                echo "Quantidade em estoque.......: ".$linha['qtdeestoque']."<br>";
                             echo "Descrição...............................: ".$linha['descricaoproduto']."<br>";
 
-                            echo "<a href='form_altera_produto.php?idproduto=".$linha[idproduto]."'> Alterar</a><br><br>"; 
+                            echo "<a href='form_altera_produto.php?idproduto=".$linha['idproduto']."'> Alterar</a><br><br>"; 
                         } 
                     }
                     ?>

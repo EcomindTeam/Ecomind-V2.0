@@ -22,7 +22,7 @@
                 echo "Produto nao encontrado  !!!<br><br>";
                 exit;
                 }
-                $linha = pg_fetch_array($resultado);
+                $linha = $statement->fetchALL($resultado);
             ?>
             <div id="topo">
                 <div class="logo">
@@ -61,15 +61,15 @@
                 <form class="box" action="grava_produto_alterado.php" method="post">
          
                     Código do produto <input type="number" name="idproduto" 
-                    value="<?php echo $linha[idproduto]; ?>" readonly>
+                    value="<?php echo $linha['idproduto']; ?>" readonly>
                     Nome <input type="text" name="nome" 
-                    value="<?php echo $linha[nome]; ?>" >
+                    value="<?php echo $linha['nome']; ?>" >
                     Preço <input type="number" name="precoproduto" step="0.01"
-                    value="<?php echo $linha[precoproduto]; ?>" >
+                    value="<?php echo $linha['precoproduto']; ?>" >
                     Descrição <input type="text" name="descricaoproduto" 
-                    value="<?php echo $linha[descricaoproduto]; ?>" >
+                    value="<?php echo $linha['descricaoproduto']; ?>" >
                     Quantidade em estoque <input type="number" name="qtdeestoque" 
-                    value="<?php echo $linha[qtdeestoque]; ?>" ><br>
+                    value="<?php echo $linha['qtdeestoque']; ?>" ><br>
                     <input type="submit" value="Gravar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		            <input type="reset" value="Redefinir">                  
                 </form>

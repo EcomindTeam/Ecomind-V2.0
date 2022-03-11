@@ -51,21 +51,20 @@
                     if ($statement->fetchAll() <= 0)
                     {
                         echo "Não foi encontrado nenhum usuario !!!<br><br>";
-                        pg_close($conecta);
                         //echo "A conexão com o banco de dados foi encerrada!"
                     }
                     else{
                         echo "<br><br><strong>Usuários Encontrados</strong><br><br><br>";
                         foreach ($statement as $linha)
                         {
-                            $linha=pg_fetch_array($resultado);
+                            $linha=$statement->fetchALL($resultado);
                             echo "ID do Usuário........: ".$linha['idusuario']."<br>";
                             echo "Nome.....................: ".$linha['nome']."<br>";  
                             echo "Senha....................: ".$linha['senha']."<br>";
                             echo "Endereço..............: ".$linha['endereco']."<br>";
                             echo "CPF.......................: ".$linha['cpf']."<br>";
 
-                            echo "<a href='form_altera_usuario.php?idusuario=".$linha[idusuario]."'> Alterar</a><br><br>"; 
+                            echo "<a href='form_altera_usuario.php?idusuario=".$linha['idusuario']."'> Alterar</a><br><br>"; 
                         } 
                     }
                     

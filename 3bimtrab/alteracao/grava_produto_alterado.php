@@ -15,11 +15,12 @@
     qtdeestoque = :qtdeestoque 
     WHERE idproduto = :idproduto;";
     
-    $sql->bindParam(":idproduto",$idproduto);
-    $sql->bindParam(":nome",$nome);
-    $sql->bindParam(":preco",$precoproduto);
-    $sql->bindParam(":descricaoproduto",$descricaoproduto);
-    $sql->bindParam(":qtdeestoque",$qtdeestoque);
+    $statement = $conecta->prepare($sql);
+    $statement->bindParam(":idproduto",$idproduto);
+    $statement->bindParam(":nome",$nome);
+    $statement->bindParam(":preco",$precoproduto);
+    $statement->bindParam(":descricaoproduto",$descricaoproduto);
+    $statement->bindParam(":qtdeestoque",$qtdeestoque);
 
     if ($statement->fetchAll() <= 0)
     {

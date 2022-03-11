@@ -65,9 +65,7 @@
                 else{
                     echo "Gravação mal-sucedida";
                     echo '<a class="ali" href="http://200.145.153.175/samaral/3bimtrab/home.php"> Voltar para página inicial</a> ';
-                }	
-                pg_close($conecta);
-                echo "A conexão com o banco de dados foi encerrada! <br>";                
+                }              
             ?>
            </div>
         </div>

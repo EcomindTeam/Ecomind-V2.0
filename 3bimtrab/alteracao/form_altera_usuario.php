@@ -21,7 +21,7 @@
                 echo "Usuário não encontrado  !!!<br><br>";
                 exit;
                 }
-                $linha = pg_fetch_array($resultado);
+                $linha = $statement->fetchALL($resultado);
             ?>
             <div id="topo">
                 <div class="logo">
@@ -59,13 +59,13 @@
                 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                 <form class="box" action="grava_usuario_alterado.php" method="post">
                     ID do Usuário <input type="number" name="idusuario" 
-                    value="<?php echo $linha[idusuario]; ?>" readonly>
+                    value="<?php echo $linha['idusuario']; ?>" readonly>
 		    Nome <input type="text" name="nome" 
-                    value="<?php echo $linha[nome]; ?>" >
+                    value="<?php echo $linha['nome']; ?>" >
                     Senha <input type="text" name="senha" 
-                    value="<?php echo $linha[senha]; ?>" >
+                    value="<?php echo $linha['senha']; ?>" >
                     CPF <input type="text" name="cpf" 
-                    value="<?php echo $linha[cpf]; ?>" >
+                    value="<?php echo $linha['cpf']; ?>" >
                     <input type="submit" value="Gravar">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <input type="reset" value="Redefinir"> 
                 </form>
