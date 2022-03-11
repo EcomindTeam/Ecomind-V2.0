@@ -51,7 +51,7 @@
                         echo "<br><br><strong>Usuários encontrados</strong><br><br>";
                         for ($cont=0; $cont < $qtde; $cont++)
                         {
-                            $linha=pg_fetch_array($resultado);
+                            $linha=$statement->fetchALL($resultado);
                             echo "ID do Usuário........: ".$linha['idusuario']."<br>";
                             echo "Login.....................: ".$linha['usuario']."<br>";
                             echo "Senha....................: ".$linha['senha']."<br>";

@@ -51,7 +51,7 @@
                         echo "<br><br><strong>Produtos encontrados</strong><br><br>";
                         for ($cont=0; $cont < $qtde; $cont++)
                         {
-                            $linha=pg_fetch_array($resultado);
+                            $linha=$statement->fetchALL($resultado);
                             echo "Código do produto........: ".$linha['idproduto']."<br>";
                             echo "Nome.....................: ".$linha['nome']."<br>";
                             echo "Preço....................: ".$linha['preco']."<br>";

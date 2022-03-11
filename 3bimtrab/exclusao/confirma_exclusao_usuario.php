@@ -17,7 +17,7 @@
                 $resultado=pg_query($conecta,$sql);
                 $qtde=pg_num_rows($resultado);
                 if ( $qtde == 0 ){echo "Usuário não encontrado  !!!<br><br>";exit;}
-                $linha = pg_fetch_row($resultado);
+                $linha = $statement->fetchALL($resultado);
             ?>
             <div id="topo">
                 <div class="logo">
