@@ -49,12 +49,12 @@
                 include "../conexao/conexao.php";        
                 $string = "INSERT INTO produto VALUES (DEFAULT, ':nome',':precoproduto',':descricaoproduto', ':qtdestoque'";
 
-                $sql=$conecta->prepare($string);
-                $sql->bindParam(":precoproduto",$nome);
-                $sql->bindParam(":precoproduto",$precoproduto);
-                $sql->bindParam(":descricaoproduto",$descricaoproduto);
-                $sql->bindParam(":qtdestoque",$qtdestoque);
-                $statement = $stringdeconexao->query($sql);
+                $statement = $conecta->prepare($sql);
+                $statement->bindParam(":precoproduto",$nome);
+                $statement->bindParam(":precoproduto",$precoproduto);
+                $statement->bindParam(":descricaoproduto",$descricaoproduto);
+                $statement->bindParam(":qtdestoque",$qtdestoque);
+                $statement = $conecta->query($sql);
                 $statement->execute();  
 
                 if ( $statement->fetchAll() <= 0 )

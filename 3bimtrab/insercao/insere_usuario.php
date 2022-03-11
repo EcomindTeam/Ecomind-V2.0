@@ -55,13 +55,13 @@
             
 
                 $string = "INSERT INTO produto VALUES (':email', ':senha',':nome',':cpf', ':endereco'";
-                $sql=$conecta->prepare($string);
+                $statement=$sql=$conecta->prepare($sql);
 
-                $sql->bindParam(":email",$email);
-                $sql->bindParam(":senha",$senha);
-                $sql->bindParam(":nome",$nome);
-                $sql->bindParam(":cpf",$cpf);
-                $sql->bindParam(":endereco",$endereco);
+                $statement->bindParam(":email",$email);
+                $statement->bindParam(":senha",$senha);
+                $statement->bindParam(":nome",$nome);
+                $statement->bindParam(":cpf",$cpf);
+                $statement->bindParam(":endereco",$endereco);
                 $statement = $stringdeconexao->query($sql);
                 $statement->execute();
 
