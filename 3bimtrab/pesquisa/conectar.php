@@ -1,6 +1,6 @@
 <?php
 
-    $stringdeconexao = "host=localhost port=5432 dbname=b30samaral user=b30samaral password=cti";
+    $stringdeconexao = new PDO("pgsql:host=localhost port=5432 dbname=postgres", "postgres", "alunocti", array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 
     $conecta = pg_connect($stringdeconexao);
     

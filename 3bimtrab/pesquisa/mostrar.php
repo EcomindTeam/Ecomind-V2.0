@@ -72,7 +72,7 @@
             if ($qtde > 0)
             {
                 echo "Produtos encontrados<br><br>";
-                while($linha = pg_fetch_array($resultado)) //ou
+                while($linha = $statement->fetchAll($resultado)) //ou
                     //for ($cont=0; $cont < $qtde; $cont++)
                 {
                     //$linha=pg_fetch_array($resultado);

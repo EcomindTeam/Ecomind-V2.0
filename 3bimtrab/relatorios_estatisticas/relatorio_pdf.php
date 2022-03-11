@@ -30,7 +30,7 @@
             </div> ';
 
     if($qtde>0)
-        while($linha = pg_fetch_array($res)){
+        while($linha = $statement->fetchAll()($res)){
 
             $html = $html.
                     '<div class="row">
