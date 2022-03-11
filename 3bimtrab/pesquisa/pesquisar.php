@@ -1,13 +1,15 @@
 <?php
-    session_start();
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="utf-8" />
     <title>Menu de Pesquisa</title>
-    <link rel="stylesheet" type="text/css" href="/samaral/3bimtrab/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/Ecomind-V2.0/3bimtrab/css/style.css">
 </head>
+
 <body>
     <!-- script foi chamado de menu.php -->
     <form class="box" method="GET" action="mostrar.php">
@@ -21,4 +23,5 @@
         </center>
     </form>
 </body>
+
 </html>

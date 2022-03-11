@@ -1,6 +1,6 @@
 <?php
 
-include "/samaral/3bimtrab/conexao/conexao.php";
+include "/Ecomind-V2.0/3bimtrab/conexao/conexao.php";
 
 
 //SMTP needs accurate times, and the PHP time zone MUST be set
@@ -43,19 +43,16 @@ $mail->Username = 'ctiecomind@gmail.com'; //Preencher com o usuário da sua cont
 $mail->Password = 'ecomind2021'; //Preencher com a senha do usuário da sua conta Gmail
 
 //Set who the message is to be sent from
-$mail->From='ctiecomind@gmail.com'; //Preencher com a sua conta Gmail
-$mail->FromName='Ecomind'; //Preencher com o nome do remetente
+$mail->From = 'ctiecomind@gmail.com'; //Preencher com a sua conta Gmail
+$mail->FromName = 'Ecomind'; //Preencher com o nome do remetente
 
 
 session_start();
 
-if (isset($_SESSION['email']))
-    {
-        $mail->addAddress($_SESSION['email']);
-	} 
-else
-{	
-    echo '<a href="/samaral/3bimtrab/login/login.php"> <img src="imagens/usuario.png" width="3%"></a> &nbsp;&nbsp;';
+if (isset($_SESSION['email'])) {
+    $mail->addAddress($_SESSION['email']);
+} else {
+    echo '<a href="/Ecomind-V2.0/3bimtrab/login/login.php"> <img src="imagens/usuario.png" width="3%"></a> &nbsp;&nbsp;';
     return;
 }
 //Set who the message is to be sent to
@@ -66,7 +63,7 @@ $mail->Subject = 'Bem vindo a nossa Loja!!'; //Preencher com o assunto do email
 
 $mail->isHTML(true); //Configurar mensagem como HTML
 
-$mail->CharSet='UTF-8'; //Configurar conjunto de caracteres da mensagem em HTML
+$mail->CharSet = 'UTF-8'; //Configurar conjunto de caracteres da mensagem em HTML
 
 //Replace the plain text body with one created manually
 $mail->Body = '<html><head><meta charset="utf-8"></head><body> Obrigado por fazer parte da nossa missão!! <br> Você adquirá um produto pensado especialmente no seu conforto e no planeta :) <br><br>  <img src="imagens/logo.png" width="3%"></body></html>'; //Mensagem em HTML
@@ -75,6 +72,5 @@ $mail->Body = '<html><head><meta charset="utf-8"></head><body> Obrigado por faze
 if (!$mail->send()) {
     echo "Mailer Error: " . $mail->ErrorInfo;
 } else {
-	echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=/samaral/3bimtrab/home.php'>";  
-
+    echo "<meta HTTP-EQUIV='refresh' CONTENT='0;URL=/Ecomind-V2.0/3bimtrab/home.php'>";
 }
